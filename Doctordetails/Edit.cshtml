@@ -1,0 +1,142 @@
+﻿@model ClinicManagement.Domin.Doctordetails
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2> Edit Doctor Details <a class="btn btn-danger float-right" href="~/Home/Index">LogOut</a></h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="DoctorID" />
+            <div class="form-group">
+                <label asp-for="FirstName" class="required"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="required"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Sex</label><br />
+                @Html.RadioButtonFor(model => model.Sex, "Male")
+                Male<br />
+                @Html.RadioButtonFor(model => model.Sex, "Female")
+                Female<br />
+                @Html.RadioButtonFor(model => model.Sex, "Others")
+                Others<br /><br />
+            </div>
+            <div class="form-group">
+                <label asp-for="Age" class="required"></label>
+                <input asp-for="Age" class="form-control" />
+                <span asp-validation-for="Age" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Date_of_Birth" class="required"></label>
+                <input asp-for="Date_of_Birth" class="form-control" />
+                <span asp-validation-for="Date_of_Birth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Specialization" class="required"></label>
+                @Html.DropDownList("Specialization", new List<SelectListItem>
+                   {
+                   new SelectListItem{Value="General",Text="General"},
+                   new SelectListItem{Value="Internal Medicine",Text="Internal Medicine"},
+                   new SelectListItem{Value="Pediatrics",Text="Pediatrics"},
+                   new SelectListItem{Value="Orthopedics",Text="Orthopedics"},
+                   new SelectListItem{Value="Ophthalmology",Text="Ophthalmology"}
+
+                }, "Specialization", new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+
+                <label asp-for="FromTime" class="required"></label>
+                <select class="form-control" asp-for="FromTime">
+                    <option>00:00</option>
+                    <option>01:00</option>
+                    <option>02:00</option>
+                    <option>03:00</option>
+                    <option>04:00</option>
+                    <option>05:00</option>
+                    <option>06:00</option>
+                    <option>07:00</option>
+                    <option>08:00</option>
+                    <option>09:00</option>
+                    <option>10:00</option>
+                    <option>11:00</option>
+                    <option>12:00</option>
+                    <option>13:00</option>
+                    <option>14:00</option>
+                    <option>15:00</option>
+                    <option>16:00</option>
+                    <option>17:00</option>
+                    <option>18:00</option>
+                    <option>19:00</option>
+                    <option>20:00</option>
+                    <option>21:00</option>
+                    <option>22:00</option>
+                    <option>23:00</option>
+                </select>
+
+                <span asp-validation-for="FromTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @*<label asp-for="ToTime" class="control-label"></label>
+            <input asp-for="ToTime" class="form-control" />
+            <span asp-validation-for="ToTime" class="text-danger"></span>*@
+                <label asp-for="ToTime" class="required"></label>
+                <select class="form-control" asp-for="ToTime">
+                    <option>00:00</option>
+                    <option>01:00</option>
+                    <option>02:00</option>
+                    <option>03:00</option>
+                    <option>04:00</option>
+                    <option>05:00</option>
+                    <option>06:00</option>
+                    <option>07:00</option>
+                    <option>08:00</option>
+                    <option>09:00</option>
+                    <option>10:00</option>
+                    <option>11:00</option>
+                    <option>12:00</option>
+                    <option>13:00</option>
+                    <option>14:00</option>
+                    <option>15:00</option>
+                    <option>16:00</option>
+                    <option>17:00</option>
+                    <option>18:00</option>
+                    <option>19:00</option>
+                    <option>20:00</option>
+                    <option>21:00</option>
+                    <option>22:00</option>
+                    <option>23:00</option>
+                </select>
+
+                <span asp-validation-for="ToTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber" class="control-label"></label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <table>
+                    <tr>
+                        <input type="submit" value="Edit Details" class="btn btn-success" />
+                    </tr>
+                    <tr>
+                        <a class="btn btn-secondary " href="~/Doctordetails/Index">Back to List</a>
+                    </tr>
+                </table>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+

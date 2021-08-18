@@ -1,0 +1,136 @@
+﻿@model IEnumerable<ClinicManagement.Domin.Doctordetails>
+
+@{ ViewData["Title"] = "Index"; }
+
+<h2>Doctor Details <a class="btn btn-danger float-right" href="~/Home/Index">LogOut</a></h2>
+<html>
+
+<body>
+    <div id="openpopup" sdtyle="display:none"></div>
+    <table id="usertable" class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.DoctorID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LastName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Sex)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Age)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Date_of_Birth)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Specialization)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FromTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ToTime)
+                </th>
+                <th>Edit</th>
+                @*<th>Delete</th>*@
+                <th></th>
+            </tr>
+        
+
+        </thead>
+
+    </table>
+    <table>
+        <tr>
+            <a href="/Doctordetails/Creating"  class="btn btn-primary"  id="mymodal">New Entry</a>
+        </tr>
+        <tr>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a class="btn btn-secondary " href="~/Logins/Success">Back to Menu</a>
+        </tr>
+
+    </table>
+    
+</body>
+</html>
+<script type="text/javascript">
+    $(document).ready(function () {
+      
+
+        var table = $('#usertable').DataTable({
+            "processing": true,
+            "serverSide": true,
+            "filter": true,
+            "orderMulti": false,
+            "ajax": {
+                "url": "@Url.Action("GetAllDoctors", "Doctordetails")",
+
+                "type": "POST",
+                "datatype": "json"
+            },
+            "columns": [
+                { "sTitle": "Doctor ID", "data": "doctorID", "id": "docid" },
+                { "sTitle": "First Name", "data": "firstName", "id": "fname" },
+                { "sTitle": "Last Name", "data": "lastName", "id": "lname" },
+                { "sTitle": "Sex", "data": "sex", "id": "sex" },
+                { "sTitle": "Age", "data": "age", "id": "age" },
+                { "sTitle": "Date of Birth", "data": "date_of_Birth", "id": "dob" },
+                { "sTitle": "From Time ", "data": "fromTime", "id": "ftime" },
+                { "sTitle": "To Time ", "data": "toTime", "id": "ttime" },
+                { "sTitle": "Phone Number", "data": "phoneNumber", "id": "phoneno" },
+                {
+                    "targets": -1, "data": null,
+                    "defaultContent": "<input type='Button' id='btnSubmit' class='btn btn-secondary'  value='Edit' />"
+
+                }
+
+
+            ]
+            select: true,
+            buttons: [
+                { extend: "create", editor: editor },
+                { extend: "edit", editor: editor },
+                { extend: "remove", editor: editor }
+            ]
+        })
+
+
+    })
+    $(document).ready(function () {
+        $('#btnSubmit').click(function () {
+
+            debugger;
+            $.ajax({
+                url: '@Url.Action("Creating", "Doctordetails")',
+                dataType: "json",
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                //  cache: false,
+                //data: '{ "DoctorID":"' + DoctorID + '", "fname": "' + FirstName + '", "lname": "' + LastName + '", "age": "' + Age + '", "dob": "' + Date_of_Birth + '", "specs": "' + Specialization + '", "ftime": "' + FromTime + '", "ttime": "' + ToTime + '", "phoneno": "' + PhoneNumber + '"}',
+
+                success: function (Data) {
+                    window.location.href ='@Url.Action("Creating","Doctordetails")'
+                },
+
+            })
+        })
+    })
+    
+
+</script>
+@*<script>
+    $(document).ready(function () {
+        $("#btnSubmit").click(function () {
+            alert("button has been clicked");
+            
+            })
+        })
+    })
+</script>*@
+
